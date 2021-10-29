@@ -8,6 +8,8 @@ RUN yarn install
 
 COPY . .
 
+RUN yarn gqlgen
+
 RUN yarn build && \
     yarn install --production
 
