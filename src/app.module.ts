@@ -7,6 +7,7 @@ import { AppResolver } from './app/app.resolver';
 import { AppService } from './app/app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeormConfig } from './shared/util/typeOrmConfig';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -22,7 +23,10 @@ import { typeormConfig } from './shared/util/typeOrmConfig';
 
         // If we are in development, we want to generate the schema.graphql
         if (process.env.NODE_ENV !== 'production' || process.env.IS_OFFLINE) {
-          schemaModuleOptions.autoSchemaFile = 'schema.graphql';
+          schemaModuleOptions.typePaths = ['./**/*.graphql'];
+          schemaModuleOptions.definitions = {
+            path: join(process.cwd(), 'src/graphql.ts'),
+          };
           schemaModuleOptions.debug = true;
         } else {
           // For production, the file should be generated
