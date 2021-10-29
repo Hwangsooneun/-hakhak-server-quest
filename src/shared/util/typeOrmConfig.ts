@@ -30,9 +30,5 @@ export const typeormConfig: TypeOrmModuleOptions = {
   entities: [`${path.join(__dirname, '..', '..', '**')}/*.model.[tj]s`],
   migrations: [__dirname + '/src/migrations/*.ts'],
   cli: { migrationsDir: 'src/migrations' },
-  autoLoadEntities: true,
-  charset: 'utf8mb4',
-  synchronize: false,
-  logging: true,
-  keepConnectionAlive: true,
+  synchronize: true,
 };
