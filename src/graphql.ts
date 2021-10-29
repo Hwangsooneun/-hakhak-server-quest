@@ -37,6 +37,10 @@ export interface LoginUserData {
     password: string;
 }
 
+export interface DeleteUserData {
+    id: number;
+}
+
 export interface Board {
     id: string;
     createdAt: number;
@@ -57,8 +61,8 @@ export interface IMutation {
     updateBoard(data?: UpdateBoardData): Board | Promise<Board>;
     deleteBoard(data?: DeleteBoardData): boolean | Promise<boolean>;
     createUser(data: CreateUserData): User | Promise<User>;
-    deleteUser(): string[] | Promise<string[]>;
-    loginUser(data: LoginUserData): string | Promise<string>;
+    deleteUser(data: DeleteUserData): boolean | Promise<boolean>;
+    loginUser(data: LoginUserData): string[] | Promise<string[]>;
 }
 
 export interface User {
