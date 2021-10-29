@@ -23,15 +23,15 @@ import { AuthModule } from './auth/auth.module';
         const schemaModuleOptions: Partial<GqlModuleOptions> = {};
 
         // If we are in development, we want to generate the schema.graphql
-        if (process.env.NODE_ENV !== 'production' || process.env.IS_OFFLINE) {
+        if (process.env.NODE_ENV !== 'prod') { // local
           schemaModuleOptions.typePaths = ['./**/*.graphql'];
           schemaModuleOptions.definitions = {
-            path: join(process.cwd(), 'src/graphql.ts'),
+            path: join(process.cwd(), 'schema.graphql'),
           };
           schemaModuleOptions.debug = true;
         } else {
           // For production, the file should be generated
-          schemaModuleOptions.typePaths = ['dist/schema.graphql'];
+          schemaModuleOptions.autoSchemaFile = 'schema.grapql';
         }
 
         schemaModuleOptions.uploads = {
