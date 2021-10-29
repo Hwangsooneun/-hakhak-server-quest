@@ -20,6 +20,6 @@ input LoginUserData {
 
 type Mutation {
   createUser(data: CreateUserData!): User!
-  deleteUser: Boolean!
+  deleteUser: [String]!
   loginUser(data: LoginUserData!): String!
 }

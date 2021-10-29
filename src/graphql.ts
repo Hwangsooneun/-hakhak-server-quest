@@ -57,7 +57,7 @@ export interface IMutation {
     updateBoard(data?: UpdateBoardData): Board | Promise<Board>;
     deleteBoard(data?: DeleteBoardData): boolean | Promise<boolean>;
     createUser(data: CreateUserData): User | Promise<User>;
-    deleteUser(): boolean | Promise<boolean>;
+    deleteUser(): string[] | Promise<string[]>;
     loginUser(data: LoginUserData): string | Promise<string>;
 }
 
