@@ -1,0 +1,25 @@
+type User {
+  id: ID!
+  createdAt: Float!
+  updatedAt: Float!
+  deletedAt: Float
+  name: String!
+  password: String!
+  boards: [Board!]!
+}
+
+input CreateUserData {
+  name: String!
+  password: String!
+}
+
+input LoginUserData {
+  name: String!
+  password: String!
+}
+
+type Mutation {
+  createUser(data: CreateUserData!): User!
+  deleteUser: Boolean!
+  loginUser(data: LoginUserData!): String!
+}
