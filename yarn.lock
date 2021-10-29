@@ -7594,7 +7594,7 @@
     "@ts-morph/common" "~0.6.0"
     "code-block-writer" "^10.1.0"
 
-"ts-node@^8.6.2", "ts-node@>=9.0.0":
+"ts-node@^8.10.2", "ts-node@>=9.0.0":
   "integrity" "sha512-ISJJGgkIpDdBhWVu3jufsWpK3Rzo7bdiIXJjQc0ynKxVOVcg2oIrf2H2cejminGrptVc6q6/uynAHNCuWGbpVA=="
   "resolved" "https://registry.npmjs.org/ts-node/-/ts-node-8.10.2.tgz"
   "version" "8.10.2"

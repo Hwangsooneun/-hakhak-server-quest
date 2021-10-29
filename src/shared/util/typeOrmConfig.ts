@@ -7,7 +7,7 @@ let host = 'localhost';
 
 if (env !== 'dev') host = '172.16.25.2';
 
-// // docker
+// docker
 // export const typeormConfig: PostgresConnectionOptions = {
 //   type: 'postgres',
 //   port: 5432,
