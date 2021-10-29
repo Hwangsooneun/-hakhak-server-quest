@@ -25,5 +25,5 @@ input DeleteUserData {
 type Mutation {
   createUser(data: CreateUserData!): User!
   deleteUser(data: DeleteUserData!): Boolean!
-  loginUser(data: LoginUserData!): [String]!
+  loginUser(data: LoginUserData!): [String]
 }

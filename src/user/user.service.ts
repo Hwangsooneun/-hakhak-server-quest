@@ -28,4 +28,24 @@ export class UserService {
     user.password = hashedPassword;
     return await this._usersRepository.save(user)
   }
+
+  public async loginUser(name: string, password: string) {
+    const user = await this._usersRepository.findOne({
+      where: { name },
+    })
+    if (!user) {
+      throw new ApolloError('user not found')
+    }
+
+    const { id } = user
+    const result = await bcrypt.compare(password, user.password)
+    if (result) {
+      const accessToken = await this.jwtService.sign({
+        id,
+        name
+      })
+      return [accessToken, id] // deleteUser 테스트케이스 통과용 입니다.
+    }
+    throw new ApolloError('wrong password')
+  }
 }
