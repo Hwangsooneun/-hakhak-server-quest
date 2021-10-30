@@ -7,7 +7,6 @@ import { AppResolver } from './app/app.resolver';
 import { AppService } from './app/app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeormConfig } from './shared/util/typeOrmConfig';
-import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -22,12 +21,17 @@ import { AuthModule } from './auth/auth.module';
         const schemaModuleOptions: Partial<GqlModuleOptions> = {};
 
         // If we are in development, we want to generate the schema.graphql
-        if (process.env.NODE_ENV !== 'prod') { // 로컬
+        if (process.env.NODE_ENV === 'dev') {
+          // For local
           schemaModuleOptions.typePaths = ['./**/*.graphql'];
+          schemaModuleOptions.debug = true;
+        } else if (process.env.NODE_ENV === 'test'){
+          // For test
+          schemaModuleOptions.typePaths = ['dist-test/src/**/*.graphql'];
           schemaModuleOptions.debug = true;
         } else {
           // For production, the file should be generated
-          schemaModuleOptions.autoSchemaFile = 'schema.grapql';
+          schemaModuleOptions.typePaths = ['dist/**/*.graphql'];
         }
 
         schemaModuleOptions.uploads = {
@@ -48,7 +52,6 @@ import { AuthModule } from './auth/auth.module';
         };
       },
     }),
-    AuthModule,
   ],
   providers: [AppService, BoardService, AppResolver],
 })

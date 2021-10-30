@@ -18,6 +18,7 @@ FROM node:14.15.0-alpine3.10 as runner
 COPY --from=builder /usr/src/hakhak/node_modules ./node_modules
 COPY --from=builder /usr/src/hakhak/package.json ./package.json
 COPY --from=builder /usr/src/hakhak/dist ./dist
-COPY --from=builder /usr/src/hakhak/schema.graphql .
+COPY --from=builder /usr/src/hakhak/src/user/user.graphql ./dist/user
+COPY --from=builder /usr/src/hakhak/src/board/board.graphql ./dist/board
 
 EXPOSE 3000
