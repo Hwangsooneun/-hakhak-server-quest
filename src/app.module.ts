@@ -22,12 +22,12 @@ import { AuthModule } from './auth/auth.module';
         const schemaModuleOptions: Partial<GqlModuleOptions> = {};
 
         // If we are in development, we want to generate the schema.graphql
-        if (process.env.NODE_ENV !== 'prod') { // 로컬
+        if (process.env.NODE_ENV === 'dev') { // 로컬
           schemaModuleOptions.typePaths = ['./**/*.graphql'];
           schemaModuleOptions.debug = true;
         } else {
           // For production, the file should be generated
-          schemaModuleOptions.autoSchemaFile = 'schema.grapql';
+          schemaModuleOptions.typePaths = ['dist/**/*.graphql']; // docker인식 가능
         }
 
         schemaModuleOptions.uploads = {

@@ -44,20 +44,19 @@ export class UserService {
         id,
         name
       })
-      return [accessToken, id] // 테스트케이스 통과용 입니다.
+      return accessToken // 테스트케이스 통과용 입니다.
     }
     throw new ApolloError('Wrong password')
   }
 
   public async deleteUser(id: number) {
-    console.log('@@@@@@@@@@@', id)
     const user = await this._usersRepository.findOne({
       where: { id }
     })
-    console.log('######################', user)
     if (!user) {
       throw new ApolloError('User not found')
     }
+    
     const result = await this._usersRepository.softDelete(id)
     if (result) {
       return true
