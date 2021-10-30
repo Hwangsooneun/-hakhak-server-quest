@@ -49,11 +49,12 @@ export class UserService {
     throw new ApolloError('Wrong password')
   }
 
-  public async deleteUser(id: string) {
+  public async deleteUser(id: number) {
     console.log('@@@@@@@@@@@', id)
     const user = await this._usersRepository.findOne({
       where: { id }
     })
+    console.log('######################', user)
     if (!user) {
       throw new ApolloError('User not found')
     }
