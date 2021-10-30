@@ -18,12 +18,8 @@ input LoginUserData {
   password: String!
 }
 
-input DeleteUserData {
-  id: Int!
-}
-
 type Mutation {
   createUser(data: CreateUserData!): User!
   deleteUser: Boolean!
-  loginUser(data: LoginUserData!): [String]
+  loginUser(data: LoginUserData!): String!
 }

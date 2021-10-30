@@ -3,8 +3,7 @@ import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { GqlAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CurrentUser } from 'src/common/decorators/user.decorator';
 import { UserPayloadDto } from 'src/common/dto/user.payload.dto';
-import { CreateUserDto } from './dto/user.create.dto';
-import { LoginUserDto } from './dto/user.login.dto';
+import { CreateUserData, LoginUserData } from '../graphql';
 import { UserService } from './user.service';
 
 @Resolver()
@@ -14,12 +13,12 @@ export class UserResolver {
   ) {}
 
   @Mutation()
-  createUser(@Args('data') data: CreateUserDto) {
+  createUser(@Args('data') data: CreateUserData) {
     return this.userService.createUser(data.name, data.password)
   }
 
   @Mutation()
-  loginUser(@Args('data') data: LoginUserDto) {
+  loginUser(@Args('data') data: LoginUserData) {
     return this.userService.loginUser(data.name, data.password);
   }
 
