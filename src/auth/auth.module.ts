@@ -8,7 +8,7 @@ import { JwtStrategy } from './jwt.strategy';
   imports: [
     JwtModule.register({
       secret: `${process.env.JWT_SECRET}` || 'gogo',
-      signOptions: { expiresIn: '1 day' },
+      signOptions: { expiresIn: '1d' },
     }),
     TypeOrmModule.forFeature([User])
   ],

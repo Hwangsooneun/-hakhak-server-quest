@@ -16,7 +16,7 @@ input GetBoardsData {
 
 type Query {
   getBoards(data: GetBoardsData): [Board]!
-  hello(data: String): String!
+  hello(data: String): String
 }
 
 input CreateBoardData {

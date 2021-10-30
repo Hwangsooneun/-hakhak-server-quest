@@ -22,7 +22,7 @@ if (env !== 'dev') host = '172.16.25.2';
 // local
 export const typeormConfig: TypeOrmModuleOptions = {
   type: 'mysql',
-  host,
+  host: 'localhost',
   port: 3306,
   username: 'hoho',
   password: 'pass',

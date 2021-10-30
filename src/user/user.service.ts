@@ -19,7 +19,7 @@ export class UserService {
       where: { name },
     })
     if (existUser) {
-      throw new ApolloError('name already exist')
+      throw new ApolloError('Name already exist')
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -40,11 +40,11 @@ export class UserService {
     const { id } = user
     const result = await bcrypt.compare(password, user.password)
     if (result) {
-      const accessToken = await this.jwtService.sign({
+      
+      return this.jwtService.sign({
         id,
         name
-      })
-      return accessToken // 테스트케이스 통과용 입니다.
+      }) // 테스트케이스 통과용 입니다.
     }
     throw new ApolloError('Wrong password')
   }
