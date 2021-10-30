@@ -11,4 +11,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       secretOrKey: `${process.env.JWT_SECRET}` || 'gogo',
     });
   }
+  async validate(payload: any) {
+    console.log('##########', payload)
+    return { id: payload.id };
+  }
 }
