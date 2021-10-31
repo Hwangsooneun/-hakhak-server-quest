@@ -68,4 +68,24 @@ export class BoardService {
     }
     return this._boardRepository.save(board)
   }
+
+  public async deleteBoard(boardId: number, userId: number) {
+    const board = await this._boardRepository
+      .createQueryBuilder('board')
+      .innerJoin('board.author', 'user', 'user.id = :userId', {
+        userId
+      })
+      .where('board.id = :id', { id: boardId })
+      .getOne()
+    
+    if (!board) {
+      throw new ApolloError('Cannot delete board')
+    }
+
+    const result = await this._boardRepository.delete({
+      id: boardId
+    })
+
+    return result.affected === 1 ? true : false
+  }
 }
