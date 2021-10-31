@@ -58,9 +58,7 @@ export class UserService {
     }
     
     const result = await this._usersRepository.softDelete(id)
-    if (result) {
-      return true
-    }
-    return false
+    
+    return result.affected === 1 ? true : false
   }
 }
