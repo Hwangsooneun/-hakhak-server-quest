@@ -38,9 +38,8 @@ export class BoardService {
         data.title ? { title: `%${data.title}%` } : { title: '%%' })
         .andWhere('content like :content', 
         data.content ? { content: `%${data.content}%` } : { content: '%%' })
-
-      .getMany()
-    console.log(boards)
+        .getMany()
+        
     if (boards.length) {
       return boards
     }
