@@ -33,4 +33,10 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
+# env
+.env
+
+# other
+graphql.ts
+
 dist-test

@@ -1,0 +1,41 @@
+type Board {
+  id: ID!
+  createdAt: Float!
+  updatedAt: Float!
+  deletedAt: Float
+  title: String!
+  content: String!
+  author: User!
+}
+
+input GetBoardsData {
+  title: String
+  content: String
+  author: String
+}
+
+type Query {
+  getBoards(data: GetBoardsData): [Board]!
+  hello(data: String): String!
+}
+
+input CreateBoardData {
+  title: String!
+  content: String!
+}
+
+input UpdateBoardData {
+  id: Int!
+  title: String
+  content: String
+}
+
+input DeleteBoardData {
+  id: Int!
+}
+
+type Mutation {
+  createBoard(data: CreateBoardData): Board!
+  updateBoard(data: UpdateBoardData): Board!
+  deleteBoard(data: DeleteBoardData): Boolean!
+}

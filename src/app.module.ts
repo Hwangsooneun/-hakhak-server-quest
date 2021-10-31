@@ -21,12 +21,17 @@ import { typeormConfig } from './shared/util/typeOrmConfig';
         const schemaModuleOptions: Partial<GqlModuleOptions> = {};
 
         // If we are in development, we want to generate the schema.graphql
-        if (process.env.NODE_ENV !== 'production' || process.env.IS_OFFLINE) {
-          schemaModuleOptions.autoSchemaFile = 'schema.graphql';
+        if (process.env.NODE_ENV === 'dev') {
+          // For local
+          schemaModuleOptions.typePaths = ['./**/*.graphql'];
+          schemaModuleOptions.debug = true;
+        } else if (process.env.NODE_ENV === 'test'){
+          // For test
+          schemaModuleOptions.typePaths = ['dist-test/src/**/*.graphql'];
           schemaModuleOptions.debug = true;
         } else {
           // For production, the file should be generated
-          schemaModuleOptions.typePaths = ['dist/schema.graphql'];
+          schemaModuleOptions.typePaths = ['dist/**/*.graphql'];
         }
 
         schemaModuleOptions.uploads = {

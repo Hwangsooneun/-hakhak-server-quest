@@ -1,12 +1,12 @@
 import path from 'path';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
-
 const env = process.env.NODE_ENV;
 
 let host = 'localhost';
 
 if (env !== 'dev') host = '172.16.25.2';
 
+// docker
 export const typeormConfig: PostgresConnectionOptions = {
   type: 'postgres',
   port: 5432,
