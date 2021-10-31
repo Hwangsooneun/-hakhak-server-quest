@@ -28,7 +28,6 @@ export const typeormConfig: TypeOrmModuleOptions = {
   password: 'pass',
   database: 'test11',
   entities: [`${path.join(__dirname, '..', '..', '**')}/*.model.[tj]s`],
-  migrations: [__dirname + '/src/migrations/*.ts'],
-  cli: { migrationsDir: 'src/migrations' },
+  logging: ['query'],
   synchronize: true,
 };
