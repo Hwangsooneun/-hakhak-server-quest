@@ -41,6 +41,7 @@ export class BoardService {
         .getMany()
         
     if (boards.length) {
+      boards.map(el => el.author.password = '#')
       return boards
     }
     throw new ApolloError('No data found')
