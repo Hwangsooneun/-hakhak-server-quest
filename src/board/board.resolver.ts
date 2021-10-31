@@ -3,7 +3,7 @@ import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
 import { GqlAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CurrentUser } from 'src/common/decorators/user.decorator';
 import { UserPayloadDto } from 'src/common/dto/user.payload.dto';
-import { CreateBoardData, GetBoardsData } from '../graphql';
+import { CreateBoardData, GetBoardsData, UpdateBoardData } from '../graphql';
 import { BoardService } from './board.service';
 
 @Resolver()
@@ -24,5 +24,14 @@ export class BoardResolver {
     @CurrentUser() user: UserPayloadDto
     ) {
       return this.boardService.createBoard(data.title, data.content, user.id)
+  }
+
+  @Mutation()
+  @UseGuards(GqlAuthGuard)
+  updateBoard(
+    @Args('data') data: UpdateBoardData,
+    @CurrentUser() user: UserPayloadDto
+  ) {
+    return this.boardService.updateBoard(data, user.id)
   }
 }
