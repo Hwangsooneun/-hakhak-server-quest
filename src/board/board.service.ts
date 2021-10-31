@@ -30,15 +30,17 @@ export class BoardService {
   public async getBoards(data) {
     const boards = await this._boardRepository
       .createQueryBuilder('board')
-        .innerJoin('board.author', 'user', 
+        .innerJoinAndSelect('board.author', 'user', 
         data.author ? 'user.name = :name' : '', 
         data.author ? { name: data.author } : {})
+
         .where('title like :title', 
         data.title ? { title: `%${data.title}%` } : { title: '%%' })
         .andWhere('content like :content', 
         data.content ? { content: `%${data.content}%` } : { content: '%%' })
-      .getMany()
 
+      .getMany()
+    console.log(boards)
     if (boards.length) {
       return boards
     }
