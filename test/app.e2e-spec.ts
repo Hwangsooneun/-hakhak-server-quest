@@ -157,7 +157,7 @@ describe('AppController (e2e)', () => {
       });
   });
 
-  it('게시판 검색, 제목으로 검색', () => {
+  it('게시판 검색, 내용으로 검색', () => {
     const content = '어요'
     return request(app.getHttpServer())
       .post('/graphql')
