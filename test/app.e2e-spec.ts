@@ -30,7 +30,6 @@ describe('AppController (e2e)', () => {
       }` })
       .expect(200)
       .expect(({ body }) => {
-        console.log('HELLO', body)
         expect(body.data.hello).toBe('Hello World!@#');
       });
   });
@@ -43,7 +42,6 @@ describe('AppController (e2e)', () => {
       .send({ query: `mutation {createUser(data: { name: "${name}" password: "${password}"}){name}}` })
       .expect(200)
       .expect(({ body }) => {
-        console.log('USER CREATE', body)
         expect(body.data.createUser.name).toBe(name);
       });
   });
@@ -56,7 +54,6 @@ describe('AppController (e2e)', () => {
       .send({ query: `mutation {createUser(data: { name: "${name}" password: "${password}"}){name}}` })
       .expect(200)
       .expect(({ body }) => {
-        console.log('NAME EXIST', body)
         expect(body.errors[0].message).toBe('Name already exist');
       });
   });
@@ -69,11 +66,9 @@ describe('AppController (e2e)', () => {
       .send({ query: `mutation {loginUser(data: { name: "${name}" password: "${password}"})}` })
       .expect(200)
       .expect(({ body }) => {
-        console.log('USER LOGIN', body)
         const result = body.data.loginUser !== null ? true : false
         expect(result).toBe(true);
         accessToken = `Bearer ${body.data.loginUser}`
-        console.log('USER LOGIN', accessToken)
       });
   });
 
@@ -85,7 +80,6 @@ describe('AppController (e2e)', () => {
       .send({ query: `mutation {loginUser(data: { name: "${name}" password: "${password}"})}` })
       .expect(200)
       .expect(({ body }) => {
-        console.log('WRONG PASSWORD', body)
         expect(body.errors[0].message).toBe('Wrong password');
       });
   });
@@ -98,7 +92,6 @@ describe('AppController (e2e)', () => {
       .send({ query: `mutation {loginUser(data: { name: "${name}" password: "${password}"})}` })
       .expect(200)
       .expect(({ body }) => {
-        console.log('USER NOT FOUND', body)
         expect(body.errors[0].message).toBe('User not found');
       });
   });
@@ -203,7 +196,6 @@ describe('AppController (e2e)', () => {
       })
       .expect(200)
       .expect(({ body }) => {
-        console.log('UPDATE BOARD WITHOUT TOKEN', body)
         expect(body.errors[0].message).toBe('Invalid token');
       });
   });
@@ -283,7 +275,6 @@ describe('AppController (e2e)', () => {
       .send({ query: `mutation { deleteUser }` })
       .expect(200)
       .expect(({ body }) => {
-        console.log('USER DELETE', accessToken)
         expect(body.data.deleteUser).toBe(true);
       });
   });
